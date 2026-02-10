@@ -98,15 +98,16 @@ define(['N/ui/serverWidget', 'N/log', 'N/record'], function (serverWidget, log, 
     if (!newRecord || !newRecord.id || !newRecord.type) return;
 
     const oldValue = newRecord.getValue({ fieldId: EXTERNAL_ID_FIELD_ID });
-    const newValue = newRecord.getValue({ fieldId: PAGE_EXTERNAL_ID_FIELD_ID });
-    if (newValue === null || newValue === undefined) return;
-    if (String(oldValue || '') === String(newValue)) return;
+    const submittedValue = newRecord.getValue({ fieldId: PAGE_EXTERNAL_ID_FIELD_ID });
+    if (submittedValue === undefined) return;
+    const newValue = submittedValue === null ? '' : String(submittedValue);
+    if (String(oldValue || '') === newValue) return;
 
     record.submitFields({
       type: newRecord.type,
       id: newRecord.id,
       values: {
-        externalid: String(newValue)
+        externalid: newValue
       }
     });
 

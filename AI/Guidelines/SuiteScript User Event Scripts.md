@@ -68,10 +68,13 @@ define(['N/record'], function (record) {
   unreliable for the target record/account context.
 - When using `afterSubmit` persistence:
   - run only on supported types (typically `CREATE` and `EDIT`)
+  - note: `COPY` is a `beforeLoad` context; persisted copy saves as `CREATE` in `afterSubmit`
   - compare old vs new value before writing to avoid unnecessary updates
   - write using `record.submitFields({ type, id, values })`
+  - treat a blank submitted value as an explicit clear when business requirement says the field should be clearable
 - Keep debug logs around context type and key value transitions for faster
   NetSuite-side diagnosis.
+- User Event scripts do not trigger other User Event scripts; do not model UE recursion risk in reviews.
 
 ## Deployment Modeling Rule
 - For SDF object XML, embed deployments inside the script object XML under:

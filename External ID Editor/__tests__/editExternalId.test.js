@@ -161,6 +161,31 @@ describe('editExternalId user event script', () => {
     expect(record.submitFields).not.toHaveBeenCalled();
   });
 
+  test('afterSubmit clears externalid when custom field is blank', () => {
+    const handlers = loadHandlers();
+
+    handlers.afterSubmit(buildContext({
+      type: 'edit',
+      newRecord: {
+        type: 'customer',
+        id: '123',
+        getValue: jest.fn().mockImplementation(({fieldId}) => {
+          if (fieldId === constants.PAGE_EXTERNAL_ID_FIELD_ID) return '';
+          if (fieldId === constants.EXTERNAL_ID_FIELD_ID) return 'HAS-VALUE';
+          return undefined;
+        })
+      }
+    }));
+
+    expect(record.submitFields).toHaveBeenCalledWith({
+      type: 'customer',
+      id: '123',
+      values: {
+        externalid: ''
+      }
+    });
+  });
+
   test('afterSubmit does nothing when new value equals old value', () => {
     const handlers = loadHandlers();
 
