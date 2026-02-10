@@ -9,7 +9,7 @@ description: Use this skill when running Role 4. It runs verification commands, 
 Verify correctness and readiness after implementation.
 
 ## Required Output
-- Command log for `lint`, `test`, `build`, plus relevant checks
+- Command log for `lint`, `test`, plus relevant checks
 - Results for each command
 - Fixes and reruns for failures when possible
 - Final status: pass, fail, or blocked

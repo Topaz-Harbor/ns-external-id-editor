@@ -9,9 +9,8 @@
     <scriptdeployment scriptid="customdeploy_th_ext_id_editor_cust">
       <isdeployed>T</isdeployed>
       <loglevel>DEBUG</loglevel>
-      <recordtype>customer</recordtype>
+      <recordtype>RECORD</recordtype>
       <status>RELEASED</status>
-      <title>TH External ID Editor - Customer</title>
     </scriptdeployment>
   </scriptdeployments>
 </usereventscript>

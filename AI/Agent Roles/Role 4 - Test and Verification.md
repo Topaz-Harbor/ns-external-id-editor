@@ -5,10 +5,10 @@ Verify implementation quality and runtime/deploy readiness.
 
 ## Inputs
 - Role 3 code changes
-- Project test/build/deploy commands
+- Project test/lint/deploy commands
 
 ## Output
-- Command log with results for `lint`, `test`, `build`, and relevant checks
+- Command log with results for `lint`, `test`, and relevant checks
 - Fixes for failures, then reruns
 - Final status: pass, fail, or blocked
 
