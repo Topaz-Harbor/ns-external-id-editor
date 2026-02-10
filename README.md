@@ -17,10 +17,11 @@ Kickoff template:
 - Avoid:
 
 Process order:
-1. Product Owner (you): provide the template inputs
-2. Architect/Planner (Codex): plan only, no code edits
-3. Implementer (Codex): code changes per approved plan
-4. Test and Verification (Codex): command log + results
-5. Reviewer (Codex): PR-style findings
-6. Release/Operator (you + Codex): SDF deploy steps, permissions, version/changelog, runbook
-7. Git Committer (Codex): commit after explicit approval with professional message
+1. Machine Setup (Codex + you): validate local tooling, auth, and project readiness
+2. Product Owner (you): provide the template inputs
+3. Architect/Planner (Codex): plan only, no code edits
+4. Implementer (Codex): code changes per approved plan
+5. Test and Verification (Codex): command log + results
+6. Reviewer (Codex): PR-style findings
+7. Release/Operator (you + Codex): SDF deploy steps, permissions, version/changelog, runbook
+8. Git Committer (Codex): commit after explicit approval with professional message
