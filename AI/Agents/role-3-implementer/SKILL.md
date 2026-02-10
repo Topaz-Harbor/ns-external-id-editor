@@ -1,0 +1,26 @@
+---
+name: role-3-implementer
+description: Use this skill when running Role 3. It implements only the approved plan with tightly scoped code changes.
+---
+
+# Role 3 - Implementer
+
+## Purpose
+Implement approved plan changes only.
+
+## Required Inputs
+- Approved Role 2 plan
+- Role 1 constraints/non-goals
+
+## Required Output
+- Code changes aligned to acceptance criteria
+- No unrelated refactors
+
+## Guardrails
+- Keep SuiteScript/SDF conventions:
+  - `src/FileCabinet/SuiteScripts/topazHarbor/[utilityName]/[fileName].js`
+  - `src/Objects/` for object XML
+- Script deployments must be inside `customscript_*.xml` under:
+  - `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>`
+- Do not create standalone `customdeploy_*.xml` for script object deployments.
+- If plan needs to change, stop and return to Role 2.
