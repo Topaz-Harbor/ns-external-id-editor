@@ -6,7 +6,7 @@
   <notifyowner>T</notifyowner>
   <scriptfile>[/SuiteScripts/topazHarbor/externalIdEditor/editExternalId.js]</scriptfile>
   <scriptdeployments>
-    <scriptdeployment scriptid="customdeploy_th_ext_id_editor_cust">
+    <scriptdeployment scriptid="customdeploy_th_ext_id_editor_all">
       <isdeployed>T</isdeployed>
       <loglevel>DEBUG</loglevel>
       <recordtype>RECORD</recordtype>

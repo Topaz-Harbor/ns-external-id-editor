@@ -9,12 +9,11 @@
    ```
 4. Verify the following objects are deployed:
    - `customscript_th_ext_id_editor`
-   - `customdeploy_th_ext_id_editor_cust`
 
 ## Configure
 1. In NetSuite, open **Customization > Scripting > Scripts**.
 2. Open `TH External ID Editor`.
-3. Review deployment `customdeploy_th_ext_id_editor_cust`:
+3. Review deployment `customdeploy_th_ext_id_editor_all`:
    - Set **Status** to `Released`.
    - Set **Deployed** to `T`.
    - Confirm target record type is `All Records` (`recordtype=RECORD` in SDF XML).
@@ -31,7 +30,7 @@
 - Confirm deployment is active and status is `Released`.
 - Confirm `afterSubmit` executes in the context used (`CREATE`/`EDIT`).
 - Confirm record type and record ID exist in the submitted context.
-- Review script execution logs for deployment `customdeploy_th_ext_id_editor_cust`.
+- Review script execution logs for deployment `customdeploy_th_ext_id_editor_all`.
 
 ### Deploy command fails
 - Run `npm run lint` to validate SDF object structure first.
