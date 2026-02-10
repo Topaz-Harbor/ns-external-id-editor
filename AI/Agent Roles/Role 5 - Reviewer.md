@@ -17,6 +17,9 @@ Perform a PR-style review focused on quality and risk.
   - Readability
 - File and line references for each issue
 - Residual risks and missing test coverage
+- NetSuite admin's best friend:
+  - All objects have a description and help text
+  - Custom fields have help text added
 
 ## Guardrails
 - Prioritize actionable findings over summary text.
