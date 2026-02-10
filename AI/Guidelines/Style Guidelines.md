@@ -74,6 +74,13 @@ Keep framework entry-point functions (for example `beforeLoad`, `beforeSubmit`,
 
 Rules:
 - Entry points should delegate business logic to helper functions.
-- Wrap each delegated call in `try/catch` to avoid disrupting primary runtime
-  flow when non-critical logic fails.
+- Use `try/catch` only around operations that can realistically throw in
+  runtime (for example NetSuite API calls, record/form mutations, external I/O).
+- Do not wrap pure predicate/helper calls in `try/catch` when they only evaluate
+  local values and return booleans.
+- Every `catch` block must log the error with `log.error(...)` at minimum.
 - Pass `context` through to helpers rather than rehydrating ad-hoc globals.
+- Use descriptive helper names that state behavior (`shouldRunBeforeLoad`,
+  `addExternalIdFieldToForm`, `copySubmittedExternalIdToRecord`) instead of
+  generic names like `handleBeforeLoad`.
+- Entry points may call multiple helpers; keep each call focused on one job.

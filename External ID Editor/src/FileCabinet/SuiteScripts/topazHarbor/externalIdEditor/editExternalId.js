@@ -5,13 +5,13 @@
  * @description Exposes an editable External ID field on supported record forms and persists changes on save.
  */
 
-define(['N/ui/serverWidget'], function (serverWidget) {
+define(['N/ui/serverWidget', 'N/log'], function (serverWidget, log) {
   const EXTERNAL_ID_FIELD_ID = 'externalid';
   const PAGE_EXTERNAL_ID_FIELD_ID = 'custpage_th_external_id_editor';
   const SYSTEM_INFORMATION_TAB_ID = 'systeminformation';
 
-  function handleBeforeLoad(context) {
-    const { UserEventType = {}, form, newRecord, type } = context;
+  function shouldRunBeforeLoad(context) {
+    const { UserEventType = {}, type } = context;
     // Limit beforeLoad behavior to supported contexts; filter(Boolean) drops
     // undefined enum values in partial/mock runtimes.
     const supportedTypes = [
@@ -21,8 +21,11 @@ define(['N/ui/serverWidget'], function (serverWidget) {
       UserEventType.VIEW
     ].filter(Boolean);
 
-    if (supportedTypes.length && supportedTypes.indexOf(type) === -1) return;
+    return !(supportedTypes.length && supportedTypes.indexOf(type) === -1);
+  }
 
+  function addExternalIdFieldToForm(context) {
+    const { form, newRecord } = context;
     if (!form || !newRecord) return;
 
     const currentValue = newRecord.getValue({ fieldId: EXTERNAL_ID_FIELD_ID });
@@ -36,6 +39,7 @@ define(['N/ui/serverWidget'], function (serverWidget) {
         container: SYSTEM_INFORMATION_TAB_ID
       });
     } catch (e) {
+      log.error({ title: 'beforeLoad:addFieldWithSystemInformationFailed', details: e });
       externalIdField = form.addField({
         id: PAGE_EXTERNAL_ID_FIELD_ID,
         type: serverWidget.FieldType.TEXT,
@@ -48,8 +52,8 @@ define(['N/ui/serverWidget'], function (serverWidget) {
     }
   }
 
-  function handleBeforeSubmit(context) {
-    const { UserEventType = {}, newRecord, type } = context;
+  function shouldRunBeforeSubmit(context) {
+    const { UserEventType = {}, type } = context;
     const supportedTypes = [
       UserEventType.CREATE,
       UserEventType.COPY,
@@ -57,8 +61,11 @@ define(['N/ui/serverWidget'], function (serverWidget) {
       UserEventType.XEDIT
     ].filter(Boolean);
 
-    if (supportedTypes.length && supportedTypes.indexOf(type) === -1) return;
+    return !(supportedTypes.length && supportedTypes.indexOf(type) === -1);
+  }
 
+  function copySubmittedExternalIdToRecord(context) {
+    const { newRecord } = context;
     if (!newRecord) return;
 
     const submittedValue = newRecord.getValue({ fieldId: PAGE_EXTERNAL_ID_FIELD_ID });
@@ -71,15 +78,23 @@ define(['N/ui/serverWidget'], function (serverWidget) {
   }
 
   function beforeLoad(context) {
+    if (!shouldRunBeforeLoad(context)) return;
+
     try {
-      handleBeforeLoad(context);
-    } catch (e) {}
+      addExternalIdFieldToForm(context);
+    } catch (e) {
+      log.error({ title: 'beforeLoad:addExternalIdFieldToFormFailed', details: e });
+    }
   }
 
   function beforeSubmit(context) {
+    if (!shouldRunBeforeSubmit(context)) return;
+
     try {
-      handleBeforeSubmit(context);
-    } catch (e) {}
+      copySubmittedExternalIdToRecord(context);
+    } catch (e) {
+      log.error({ title: 'beforeSubmit:copySubmittedExternalIdToRecordFailed', details: e });
+    }
   }
 
   return { beforeLoad, beforeSubmit };
