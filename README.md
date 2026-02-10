@@ -2,7 +2,7 @@
 Expose NetSuite Internal ID for view and edit on records
 
 ## How to Start a Task
-Use the role workflow files in `AI/Agent Roles/`.
+Use shared role workflow files from your standards repo / `~/.codex`, and store role outputs in `docs/ai-runs/`.
 
 SDF pre-step:
 - Create or use an existing SuiteCloud project (`suitecloud project:create ...`).
@@ -25,3 +25,7 @@ Process order:
 6. Reviewer (Codex): PR-style findings
 7. Release/Operator (you + Codex): SDF deploy steps, permissions, version/changelog, runbook
 8. Git Committer (Codex): commit after explicit approval with professional message
+
+Role output artifacts:
+- Use `docs/ai-runs/YYYY-MM-DD-<scope>/`
+- Start from templates in `docs/ai-runs/_templates/`
