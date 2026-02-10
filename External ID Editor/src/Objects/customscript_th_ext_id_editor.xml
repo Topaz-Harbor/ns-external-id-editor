@@ -1,0 +1,17 @@
+<usereventscript scriptid="customscript_th_ext_id_editor">
+  <description>Expose and persist editable External ID on supported record forms.</description>
+  <isinactive>F</isinactive>
+  <name>TH External ID Editor</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyowner>T</notifyowner>
+  <scriptfile>[/SuiteScripts/topazHarbor/externalIdEditor/editExternalId.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_th_ext_id_editor_cust">
+      <isdeployed>T</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <recordtype>customer</recordtype>
+      <status>RELEASED</status>
+      <title>TH External ID Editor - Customer</title>
+    </scriptdeployment>
+  </scriptdeployments>
+</usereventscript>

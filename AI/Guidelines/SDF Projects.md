@@ -28,9 +28,16 @@ Use the SuiteCloud CLI scaffold as the source of truth for required files.
 ## Object Location Convention
 - Put SDF object XML under:
   - `src/Objects/`
+- Keep object IDs and file names synchronized.
+  - If a top-level object ID changes (for example root `scriptid`, `fieldid`, or other root object IDs), update both:
+    - the ID inside the XML file, and
+    - the XML file name itself to match.
+  - Subrecord ID changes inside a parent object file (for example nested `scriptdeployment scriptid`) do not rename the parent file.
 - For script objects (User Event, Client, Scheduled, etc.), define deployments inside the script object XML using:
   - `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>`
 - Do not create separate `customdeploy_*.xml` files for deployments of script objects.
+- Respect NetSuite script ID limits when naming object IDs.
+  - All ScriptIDs must be `<= 40` characters.
 
 ## Planning Rule
 - In Role 2, list every file to create/update using:

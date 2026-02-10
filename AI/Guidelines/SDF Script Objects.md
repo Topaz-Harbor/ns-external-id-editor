@@ -10,8 +10,13 @@ Guidelines for how to model NetSuite script objects in SDF XML so deployments ar
 
 ## File Pattern
 - One script object per file in `src/Objects/`, named by script ID.
+- If a script ID changes, rename the object file to match the new ID.
+- This rename rule applies to the top-level script object `scriptid`.
+- Nested deployment IDs inside `scriptdeployments` do not rename the parent script object file.
 - Script file reference uses File Cabinet path style, for example:
   - `[/SuiteScripts/topazHarbor/<utilityName>/<fileName>.js]`
+- Keep all `scriptid` values within NetSuite limits.
+  - All ScriptIDs must be `<= 40` characters.
 
 ## Minimum XML Shape (User Event Example)
 ```xml
@@ -35,6 +40,8 @@ Guidelines for how to model NetSuite script objects in SDF XML so deployments ar
 - In Role 3 implementation:
   - add/update `<scriptdeployments>` in the `customscript_*.xml` object.
   - avoid creating `customdeploy_*.xml` for script deployments unless Oracle documentation for a specific object type explicitly requires it.
+  - validate all ScriptID lengths (`<= 40`) before deploy.
+  - if any object ID changes, rename the file so filename and ID stay in sync.
 - In Role 5 review:
   - flag separate `customdeploy_*.xml` files for script deployments as a structural issue.
 

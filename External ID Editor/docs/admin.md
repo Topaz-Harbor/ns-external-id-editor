@@ -8,8 +8,8 @@
    suitecloud project:deploy
    ```
 4. Verify the following objects are deployed:
-   - `customscript_th_external_id_editor`
-   - `customdeploy_th_external_id_editor_customer`
+   - `customscript_th_ext_id_editor`
+   - `customdeploy_th_ext_id_editor_cust`
 
 ## Configure
 1. In NetSuite, open **Customization > Scripting > Scripts**.
@@ -29,7 +29,7 @@
 ### Value does not persist after save
 - Confirm deployment is attached to the correct record type.
 - Confirm `beforeSubmit` executes in the context used (edit/create/copy/xedit).
-- Review script execution logs for deployment `customdeploy_th_external_id_editor_customer`.
+- Review script execution logs for deployment `customdeploy_th_ext_id_editor_cust`.
 
 ### Deploy command fails
 - Run `npm test` and fix failing tests first.

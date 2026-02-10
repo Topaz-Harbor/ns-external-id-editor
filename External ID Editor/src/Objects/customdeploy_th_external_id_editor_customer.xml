@@ -1,8 +1,0 @@
-<scriptdeployment scriptid="customdeploy_th_external_id_editor_customer">
-  <isdeployed>T</isdeployed>
-  <loglevel>DEBUG</loglevel>
-  <recordtype>customer</recordtype>
-  <status>RELEASED</status>
-  <title>TH External ID Editor - Customer</title>
-  <script scriptid="customscript_th_external_id_editor"/>
-</scriptdeployment>
