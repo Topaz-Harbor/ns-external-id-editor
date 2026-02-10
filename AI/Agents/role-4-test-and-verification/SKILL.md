@@ -14,6 +14,10 @@ Verify correctness and readiness after implementation.
 - Fixes and reruns for failures when possible
 - Final status: pass, fail, or blocked
 
+Project note:
+- In this SuiteScript project, `lint` means SDF validation via
+  `suitecloud project:validate`.
+
 ## Log Format
 - Command:
 - Result:

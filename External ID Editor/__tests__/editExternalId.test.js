@@ -92,6 +92,30 @@ describe('editExternalId user event script', () => {
     expect(createdField.defaultValue).toBe('EXT-1');
   });
 
+  test('beforeLoad uses secondary system info tab when primary is unavailable', () => {
+    const createdField = {};
+    const addField = jest.fn().mockReturnValue(createdField);
+    const handlers = loadHandlers();
+
+    handlers.beforeLoad(buildContext({
+      form: {
+        getTabs: jest.fn().mockReturnValue([constants.SECONDARY_SYSTEM_INFORMATION_TAB_ID]),
+        addField
+      },
+      newRecord: {
+        getValue: jest.fn().mockReturnValue('EXT-2')
+      }
+    }));
+
+    expect(addField).toHaveBeenCalledWith({
+      id: constants.PAGE_EXTERNAL_ID_FIELD_ID,
+      type: 'TEXT',
+      label: 'External ID',
+      container: constants.SECONDARY_SYSTEM_INFORMATION_TAB_ID
+    });
+    expect(createdField.defaultValue).toBe('EXT-2');
+  });
+
   test('afterSubmit persists edited value to native externalid field', () => {
     const getValue = jest.fn().mockImplementation(({fieldId}) => {
       if (fieldId === constants.PAGE_EXTERNAL_ID_FIELD_ID) {

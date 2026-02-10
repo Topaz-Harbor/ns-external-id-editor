@@ -117,15 +117,7 @@ define(['N/ui/serverWidget', 'N/log', 'N/record'], function (serverWidget, log, 
   }
 
   function beforeLoad(context) {
-    let shouldRun = false;
-    try {
-      shouldRun = shouldRunBeforeLoad(context);
-    } catch (e) {
-      logError('beforeLoad:shouldRunBeforeLoadFailed', e);
-      return;
-    }
-
-    if (!shouldRun) return;
+    if (!shouldRunBeforeLoad(context)) return;
 
     try {
       addExternalIdFieldToForm(context);
