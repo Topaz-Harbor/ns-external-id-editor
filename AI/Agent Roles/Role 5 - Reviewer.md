@@ -14,6 +14,7 @@ Perform a PR-style review focused on quality and risk.
   - Edge cases
   - Security
   - Maintainability
+  - Readability
 - File and line references for each issue
 - Residual risks and missing test coverage
 
