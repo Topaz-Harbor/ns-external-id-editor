@@ -24,5 +24,7 @@ Implement approved plan changes only.
   - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`
 - Script deployments must be inside `customscript_*.xml` under:
   - `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>`
+- If requirement says "ALL RECORDS" for UE/Client deployment, use:
+  - `<recordtype>RECORD</recordtype>`
 - Do not create standalone `customdeploy_*.xml` for script object deployments.
 - If plan needs to change, stop and return to Role 2.

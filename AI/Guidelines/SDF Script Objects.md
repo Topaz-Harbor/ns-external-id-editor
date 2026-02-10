@@ -34,6 +34,43 @@ Guidelines for how to model NetSuite script objects in SDF XML so deployments ar
 </usereventscript>
 ```
 
+## Deploying To All Records (UE and Client)
+Use `recordtype` value `RECORD` in the deployment when requirement is "ALL RECORDS".
+
+User Event example:
+```xml
+<usereventscript scriptid="customscript_example">
+  <name>Example UE</name>
+  <scriptfile>[/SuiteScripts/topazHarbor/example/exampleUE.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_example_ue_allrec">
+      <isdeployed>T</isdeployed>
+      <status>RELEASED</status>
+      <recordtype>RECORD</recordtype>
+    </scriptdeployment>
+  </scriptdeployments>
+</usereventscript>
+```
+
+Client Script example:
+```xml
+<clientscript scriptid="customscript_example_client">
+  <name>Example Client</name>
+  <scriptfile>[/SuiteScripts/topazHarbor/example/exampleClient.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_example_cs_allrec">
+      <isdeployed>T</isdeployed>
+      <status>RELEASED</status>
+      <recordtype>RECORD</recordtype>
+    </scriptdeployment>
+  </scriptdeployments>
+</clientscript>
+```
+
+Notes:
+- `RECORD` means all record types for script deployment recordtype.
+- This is different from audience settings (`allroles`, `allemployees`, `allpartners`), which control who can run the deployment.
+
 ## Agent Guardrails
 - In Role 2 plans:
   - explicitly list deployment configuration inside the script object file, not as a separate deployment file.
@@ -42,6 +79,7 @@ Guidelines for how to model NetSuite script objects in SDF XML so deployments ar
   - avoid creating `customdeploy_*.xml` for script deployments unless Oracle documentation for a specific object type explicitly requires it.
   - validate all ScriptID lengths (`<= 40`) before deploy.
   - if any object ID changes, rename the file so filename and ID stay in sync.
+  - when requirement says "ALL RECORDS", set `<recordtype>RECORD</recordtype>` in deployment.
 - In Role 5 review:
   - flag separate `customdeploy_*.xml` files for script deployments as a structural issue.
 

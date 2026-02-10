@@ -20,6 +20,7 @@ Implement the approved plan with code changes only.
 - Follow UE script coding standards in `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`.
 - Create/update SDF object XML files under `src/Objects/`.
 - For script deployments, use `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>` inside `customscript_*.xml`.
+- If requirement says "ALL RECORDS" for UE/Client deployment, set `<recordtype>RECORD</recordtype>`.
 - Do not create standalone `customdeploy_*.xml` files for script object deployments.
 - Treat the generated SDF project folder (with `suitecloud.config.js`) as the working root.
 - Never place SDF files at git repo root; use `repo_folder/Project Name/...`.

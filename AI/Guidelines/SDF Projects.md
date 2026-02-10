@@ -35,6 +35,8 @@ Use the SuiteCloud CLI scaffold as the source of truth for required files.
   - Subrecord ID changes inside a parent object file (for example nested `scriptdeployment scriptid`) do not rename the parent file.
 - For script objects (User Event, Client, Scheduled, etc.), define deployments inside the script object XML using:
   - `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>`
+- For UE/Client deployments targeting all record types, use:
+  - `<recordtype>RECORD</recordtype>`
 - Do not create separate `customdeploy_*.xml` files for deployments of script objects.
 - Respect NetSuite script ID limits when naming object IDs.
   - All ScriptIDs must be `<= 40` characters.
