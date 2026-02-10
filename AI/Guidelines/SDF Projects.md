@@ -7,6 +7,7 @@ Use the SuiteCloud CLI scaffold as the source of truth for required files.
 - Work from the generated project root (folder containing `suitecloud.config.js`).
 - The git repo root is never an SDF project root.
 - SDF projects always live under `repo_folder/Project Name`.
+- In project documentation and role/skill files, use repo-relative paths (no absolute filesystem paths).
 
 ## Required Scaffold (generated)
 - `suitecloud.config.js`
@@ -23,7 +24,7 @@ Use the SuiteCloud CLI scaffold as the source of truth for required files.
 - Follow camelCase for subfolders under `SuiteScripts`.
 - Do not include script type abbreviations in file names (no `ue`, `cs`, `sut` suffixes).
 - Follow script implementation standards in:
-  - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`
+  - `AI/Guidelines/SuiteScript User Event Scripts.md`
 
 ## Object Location Convention
 - Put SDF object XML under:

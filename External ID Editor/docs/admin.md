@@ -1,7 +1,7 @@
 # External ID Editor Admin Guide
 
 ## Install
-1. Open a terminal in `/Users/slemp/local/th/ns-external-id/External ID Editor`.
+1. Open a terminal in `External ID Editor`.
 2. Confirm account authentication is configured for SuiteCloud CLI.
 3. Run:
    ```bash

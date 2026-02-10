@@ -17,7 +17,7 @@ Implement the approved plan with code changes only.
   - Tech: SuiteScript 2.1, SDF
   - Style: StandardJS
   - Paths: `src/FileCabinet/SuiteScripts/topazHarbor/[utilityName]/[fileName].js`
-- Follow UE script coding standards in `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`.
+- Follow UE script coding standards in `AI/Guidelines/SuiteScript User Event Scripts.md`.
 - Create/update SDF object XML files under `src/Objects/`.
 - For script deployments, use `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>` inside `customscript_*.xml`.
 - If requirement says "ALL RECORDS" for UE/Client deployment, set `<recordtype>RECORD</recordtype>`.

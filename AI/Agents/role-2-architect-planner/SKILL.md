@@ -23,8 +23,8 @@ Produce an implementation plan before any code changes.
 ## Guardrails
 - No code changes.
 - Follow:
-  - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SDF Projects.md`
-  - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SDF Script Objects.md`
-  - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`
+  - `AI/Guidelines/SDF Projects.md`
+  - `AI/Guidelines/SDF Script Objects.md`
+  - `AI/Guidelines/SuiteScript User Event Scripts.md`
 - Plan against project root `repo_folder/Project Name` (folder with `suitecloud.config.js`), not git repo root.
 - If deployment controls are missing, ask the user before finalizing plan output.

@@ -4,7 +4,7 @@
 Define a consistent, production-safe structure for User Event scripts.
 
 ## Style Baseline
-- Follow `/Users/slemp/local/th/ns-external-id/AI/Guidelines/Style Guidelines.md`.
+- Follow `AI/Guidelines/Style Guidelines.md`.
 
 ## Required Header Tags
 All User Event scripts must include:

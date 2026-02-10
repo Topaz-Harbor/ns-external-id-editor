@@ -21,7 +21,7 @@ Implement approved plan changes only.
   - `src/FileCabinet/SuiteScripts/topazHarbor/[utilityName]/[fileName].js`
   - `src/Objects/` for object XML
 - Follow UE script coding standards in:
-  - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`
+  - `AI/Guidelines/SuiteScript User Event Scripts.md`
 - Script deployments must be inside `customscript_*.xml` under:
   - `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>`
 - If requirement says "ALL RECORDS" for UE/Client deployment, use:

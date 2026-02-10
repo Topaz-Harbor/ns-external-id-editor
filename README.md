@@ -2,7 +2,7 @@
 Expose NetSuite Internal ID for view and edit on records
 
 ## How to Start a Task
-Use the role workflow files in `/Users/slemp/local/th/ns-external-id/AI/Agent Roles/`.
+Use the role workflow files in `AI/Agent Roles/`.
 
 SDF pre-step:
 - Create or use an existing SuiteCloud project (`suitecloud project:create ...`).

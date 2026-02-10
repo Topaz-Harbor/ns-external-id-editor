@@ -4,7 +4,7 @@
 Create safe, professional commits after explicit user approval.
 
 ## Skill
-- Use `/Users/slemp/local/th/ns-external-id/AI/Agents/git-commit-pro/SKILL.md`.
+- Use `AI/Agents/git-commit-pro/SKILL.md`.
 
 ## Guardrails
 - Never commit before explicit approval.

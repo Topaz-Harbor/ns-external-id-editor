@@ -22,4 +22,4 @@ Commit changes safely after explicit user approval.
 
 ## Detailed Rules
 - For full commit standards and quality checks, follow:
-  - `/Users/slemp/local/th/ns-external-id/AI/Agents/git-commit-pro/SKILL.md`
+  - `AI/Agents/git-commit-pro/SKILL.md`

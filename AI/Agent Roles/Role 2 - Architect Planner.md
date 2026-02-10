@@ -24,9 +24,9 @@ Produce a concrete implementation plan before code changes.
 - No code changes in this phase.
 - Keep plan aligned to Role 1 scope and non-goals.
 - Flag anything missing that could block implementation.
-- Follow guidelines in `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SDF Projects.md`.
-- Follow script object structure rules in `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SDF Script Objects.md`.
-- Follow UE script coding standards in `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`.
+- Follow guidelines in `AI/Guidelines/SDF Projects.md`.
+- Follow script object structure rules in `AI/Guidelines/SDF Script Objects.md`.
+- Follow UE script coding standards in `AI/Guidelines/SuiteScript User Event Scripts.md`.
 - Do not treat git repo root as project root.
 - Plan against the SDF project folder under `repo_folder/Project Name` (folder with `suitecloud.config.js`).
 - If deployment controls are missing, ask the user and do not finalize Role 2 until confirmed.
