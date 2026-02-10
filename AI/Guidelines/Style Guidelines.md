@@ -67,3 +67,13 @@ return {
   beforeSubmit
 };
 ```
+
+## Keep Entry Points Thin
+Keep framework entry-point functions (for example `beforeLoad`, `beforeSubmit`,
+`afterSubmit`) as small as possible.
+
+Rules:
+- Entry points should delegate business logic to helper functions.
+- Wrap each delegated call in `try/catch` to avoid disrupting primary runtime
+  flow when non-critical logic fails.
+- Pass `context` through to helpers rather than rehydrating ad-hoc globals.

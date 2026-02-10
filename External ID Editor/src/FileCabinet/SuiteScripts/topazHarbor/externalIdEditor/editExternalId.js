@@ -10,7 +10,7 @@ define(['N/ui/serverWidget'], function (serverWidget) {
   const PAGE_EXTERNAL_ID_FIELD_ID = 'custpage_th_external_id_editor';
   const SYSTEM_INFORMATION_TAB_ID = 'systeminformation';
 
-  function beforeLoad(context) {
+  function handleBeforeLoad(context) {
     const { UserEventType = {}, form, newRecord, type } = context;
     // Limit beforeLoad behavior to supported contexts; filter(Boolean) drops
     // undefined enum values in partial/mock runtimes.
@@ -48,7 +48,7 @@ define(['N/ui/serverWidget'], function (serverWidget) {
     }
   }
 
-  function beforeSubmit(context) {
+  function handleBeforeSubmit(context) {
     const { UserEventType = {}, newRecord, type } = context;
     const supportedTypes = [
       UserEventType.CREATE,
@@ -68,6 +68,18 @@ define(['N/ui/serverWidget'], function (serverWidget) {
       fieldId: EXTERNAL_ID_FIELD_ID,
       value: String(submittedValue)
     });
+  }
+
+  function beforeLoad(context) {
+    try {
+      handleBeforeLoad(context);
+    } catch (e) {}
+  }
+
+  function beforeSubmit(context) {
+    try {
+      handleBeforeSubmit(context);
+    } catch (e) {}
   }
 
   return { beforeLoad, beforeSubmit };

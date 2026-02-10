@@ -52,6 +52,8 @@ define(['N/record'], function (record) {
 ## Implementation Notes
 - Keep NetSuite runtime entry points simple and explicit.
 - Keep business logic testable via small pure helper functions.
+- Keep entry points thin: delegate to helper functions and wrap delegated calls
+  in `try/catch` so failures do not disrupt record load/save flow.
 - Scope behavior by `context.type` and check required runtime objects (`form`, `newRecord`) before use.
 - Keep field IDs/constants centralized at top of file.
 
