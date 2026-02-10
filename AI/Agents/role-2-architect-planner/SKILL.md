@@ -13,6 +13,12 @@ Produce an implementation plan before any code changes.
 - Explicit files/modules to create or update
 - Data flow: input -> processing -> output
 - Risks, unknowns, assumptions
+- Deployment confirmation checklist when object deployments are involved:
+  - record targeting (`RECORD` vs specific types)
+  - status (`TESTING` or `RELEASED`)
+  - `isdeployed` (`T` or `F`)
+  - log level
+  - audience/access controls
 
 ## Guardrails
 - No code changes.
@@ -21,3 +27,4 @@ Produce an implementation plan before any code changes.
   - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SDF Script Objects.md`
   - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`
 - Plan against project root `repo_folder/Project Name` (folder with `suitecloud.config.js`), not git repo root.
+- If deployment controls are missing, ask the user before finalizing plan output.

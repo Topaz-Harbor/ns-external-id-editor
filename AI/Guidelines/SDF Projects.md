@@ -45,3 +45,9 @@ Use the SuiteCloud CLI scaffold as the source of truth for required files.
 - In Role 2, list every file to create/update using:
   - Full path relative to git repo root (including `Project Name/` prefix), and
   - Project-relative path inside that SDF project.
+- For any new/updated deployment object data, collect and confirm deployment-control inputs before implementation:
+  - record targeting (`RECORD` vs specific types)
+  - `isdeployed` state
+  - status (`TESTING` or `RELEASED`)
+  - log level
+  - audience/access controls when applicable

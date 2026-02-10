@@ -22,6 +22,8 @@ Implement the approved plan with code changes only.
 - For script deployments, use `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>` inside `customscript_*.xml`.
 - If requirement says "ALL RECORDS" for UE/Client deployment, set `<recordtype>RECORD</recordtype>`.
 - Do not create standalone `customdeploy_*.xml` files for script object deployments.
+- Do not create/update deployment controls until user confirms:
+  - record targeting, status, `isdeployed`, log level, audience/access controls.
 - Treat the generated SDF project folder (with `suitecloud.config.js`) as the working root.
 - Never place SDF files at git repo root; use `repo_folder/Project Name/...`.
 - If a plan change is required, stop and return to Role 2.

@@ -16,6 +16,12 @@ Define what should be built and when work is done.
 3. ...
 - Done means:
 - Avoid:
+- Deployment controls:
+  - Record targeting (`RECORD` for all records or specific types):
+  - Status (`TESTING` or `RELEASED`):
+  - Deployed (`T` or `F`):
+  - Log level:
+  - Audience/access controls:
 
 ## Guardrails
 - Be specific enough that implementation can be scoped to a small set of files.

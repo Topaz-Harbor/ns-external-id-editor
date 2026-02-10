@@ -27,4 +27,6 @@ Implement approved plan changes only.
 - If requirement says "ALL RECORDS" for UE/Client deployment, use:
   - `<recordtype>RECORD</recordtype>`
 - Do not create standalone `customdeploy_*.xml` for script object deployments.
+- Do not create/update deployment controls until user confirms:
+  - record targeting, status, `isdeployed`, log level, audience/access controls.
 - If plan needs to change, stop and return to Role 2.

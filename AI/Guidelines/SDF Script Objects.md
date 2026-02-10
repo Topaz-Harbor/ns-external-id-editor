@@ -71,6 +71,25 @@ Notes:
 - `RECORD` means all record types for script deployment recordtype.
 - This is different from audience settings (`allroles`, `allemployees`, `allpartners`), which control who can run the deployment.
 
+## Deployment Confirmation Gate
+Before creating or modifying script deployments, require explicit user confirmation for deployment controls.
+
+Confirm at minimum:
+- Record targeting:
+  - specific record type(s) or `RECORD` (all records)
+- Deployment state:
+  - `isdeployed` (`T` or `F`)
+- Release status:
+  - `TESTING` or `RELEASED`
+- Log level:
+  - `DEBUG`, `AUDIT`, `ERROR`, or `EMERGENCY`
+- Audience/access controls (when present):
+  - `allroles`/specific roles
+  - `allemployees`, `allpartners`, `allcustomers` as applicable
+- Script execution context controls if used for that script type/account configuration.
+
+If any of the above is unspecified, stop and ask the user before creating deployment XML.
+
 ## Agent Guardrails
 - In Role 2 plans:
   - explicitly list deployment configuration inside the script object file, not as a separate deployment file.
@@ -80,6 +99,7 @@ Notes:
   - validate all ScriptID lengths (`<= 40`) before deploy.
   - if any object ID changes, rename the file so filename and ID stay in sync.
   - when requirement says "ALL RECORDS", set `<recordtype>RECORD</recordtype>` in deployment.
+  - do not set deployment controls by assumption; require user confirmation first.
 - In Role 5 review:
   - flag separate `customdeploy_*.xml` files for script deployments as a structural issue.
 
