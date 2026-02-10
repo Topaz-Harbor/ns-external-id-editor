@@ -1,13 +1,21 @@
-const {
-  createHandlers,
-  constants
-} = require('../src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/editExternalId');
-
 const serverWidget = {
   FieldType: {
     TEXT: 'TEXT'
   }
 };
+
+const constants = {
+  EXTERNAL_ID_FIELD_ID: 'externalid',
+  PAGE_EXTERNAL_ID_FIELD_ID: 'custpage_th_external_id_editor',
+  SYSTEM_INFORMATION_TAB_ID: 'systeminformation'
+};
+
+const scriptPath = '../src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/editExternalId';
+
+function loadHandlers() {
+  delete require.cache[require.resolve(scriptPath)];
+  return require(scriptPath);
+}
 
 function buildContext(overrides) {
   return Object.assign({
@@ -23,15 +31,11 @@ function buildContext(overrides) {
 }
 
 describe('editExternalId user event script', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test('beforeLoad adds field on System Information tab when available', () => {
     const createdField = {};
     const addField = jest.fn().mockReturnValue(createdField);
     const getValue = jest.fn().mockReturnValue('ABC-100');
-    const handlers = createHandlers(serverWidget);
+    const handlers = loadHandlers();
 
     handlers.beforeLoad(buildContext({
       form: {
@@ -60,7 +64,7 @@ describe('editExternalId user event script', () => {
         throw new Error('Tab not available');
       })
       .mockReturnValueOnce(createdField);
-    const handlers = createHandlers(serverWidget);
+    const handlers = loadHandlers();
 
     handlers.beforeLoad(buildContext({
       form: {
@@ -93,7 +97,7 @@ describe('editExternalId user event script', () => {
       }
       return null;
     });
-    const handlers = createHandlers(serverWidget);
+    const handlers = loadHandlers();
 
     handlers.beforeSubmit(buildContext({
       type: 'edit',
@@ -112,7 +116,7 @@ describe('editExternalId user event script', () => {
 
   test('beforeSubmit does nothing when custom field is missing in context', () => {
     const setValue = jest.fn();
-    const handlers = createHandlers(serverWidget);
+    const handlers = loadHandlers();
 
     handlers.beforeSubmit(buildContext({
       type: 'xedit',

@@ -3,6 +3,9 @@
 ## Purpose
 Define a consistent, production-safe structure for User Event scripts.
 
+## Style Baseline
+- Follow `/Users/slemp/local/th/ns-external-id/AI/Guidelines/Style Guidelines.md`.
+
 ## Required Header Tags
 All User Event scripts must include:
 - `@NApiVersion 2.1`
@@ -39,9 +42,9 @@ define(['N/record'], function (record) {
   function afterSubmit(context) {}
 
   return {
-    beforeLoad: beforeLoad,
-    beforeSubmit: beforeSubmit,
-    afterSubmit: afterSubmit
+    beforeLoad,
+    beforeSubmit,
+    afterSubmit
   };
 });
 ```
