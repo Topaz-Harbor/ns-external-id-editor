@@ -14,11 +14,12 @@
 ## Configure
 1. In NetSuite, open **Customization > Scripting > Scripts**.
 2. Open `TH External ID Editor`.
-3. Review the deployment `TH External ID Editor - Customer`:
+3. Review deployment `customdeploy_th_ext_id_editor_cust`:
    - Set **Status** to `Released`.
    - Set **Deployed** to `T`.
-   - Confirm target record type is `Customer`.
-4. To support additional record types, create additional deployments of the same script per record type.
+   - Confirm target record type is `All Records` (`recordtype=RECORD` in SDF XML).
+   - Set preferred log level (default in SDF is `DEBUG`).
+4. If scope should be narrower than all records, update deployment `recordtype` and redeploy.
 
 ## Troubleshoot
 ### Field is not visible
@@ -27,11 +28,13 @@
 - Check whether the form shows a System Information tab; if not, the field is rendered without that container.
 
 ### Value does not persist after save
-- Confirm deployment is attached to the correct record type.
-- Confirm `beforeSubmit` executes in the context used (edit/create/copy/xedit).
+- Confirm deployment is active and status is `Released`.
+- Confirm `afterSubmit` executes in the context used (`CREATE`/`EDIT`).
+- Confirm record type and record ID exist in the submitted context.
 - Review script execution logs for deployment `customdeploy_th_ext_id_editor_cust`.
 
 ### Deploy command fails
+- Run `npm run lint` to validate SDF object structure first.
 - Run `npm test` and fix failing tests first.
 - Validate SuiteCloud account authentication and target environment.
 - Re-run deployment with explicit account if needed:
