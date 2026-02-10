@@ -57,6 +57,22 @@ define(['N/record'], function (record) {
 - Scope behavior by `context.type` and check required runtime objects (`form`, `newRecord`) before use.
 - Keep field IDs/constants centralized at top of file.
 
+## Proven Patterns From Working External ID UE
+- For form placement, do not assume a single System Information tab id.
+  - Inspect `form.getTabs()` and prefer:
+    - `systeminfo`
+    - fallback `s_sysinfo`
+    - final fallback `main`
+- For External ID persistence, prefer `afterSubmit` with `record.submitFields`
+  when direct `newRecord.setValue('externalid', ...)` in `beforeSubmit` is
+  unreliable for the target record/account context.
+- When using `afterSubmit` persistence:
+  - run only on supported types (typically `CREATE` and `EDIT`)
+  - compare old vs new value before writing to avoid unnecessary updates
+  - write using `record.submitFields({ type, id, values })`
+- Keep debug logs around context type and key value transitions for faster
+  NetSuite-side diagnosis.
+
 ## Deployment Modeling Rule
 - For SDF object XML, embed deployments inside the script object XML under:
   - `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>`

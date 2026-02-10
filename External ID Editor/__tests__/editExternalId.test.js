@@ -4,10 +4,17 @@ const serverWidget = {
   }
 };
 
+jest.mock('N/record', () => ({
+  submitFields: jest.fn()
+}));
+const record = require('N/record');
+
 const constants = {
   EXTERNAL_ID_FIELD_ID: 'externalid',
   PAGE_EXTERNAL_ID_FIELD_ID: 'custpage_th_external_id_editor',
-  SYSTEM_INFORMATION_TAB_ID: 'systeminformation'
+  SYSTEM_INFORMATION_TAB_ID: 'systeminfo',
+  SECONDARY_SYSTEM_INFORMATION_TAB_ID: 's_sysinfo',
+  MAIN_TAB_ID: 'main'
 };
 
 const scriptPath = '../src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/editExternalId';
@@ -31,6 +38,10 @@ function buildContext(overrides) {
 }
 
 describe('editExternalId user event script', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('beforeLoad adds field on System Information tab when available', () => {
     const createdField = {};
     const addField = jest.fn().mockReturnValue(createdField);
@@ -39,10 +50,11 @@ describe('editExternalId user event script', () => {
 
     handlers.beforeLoad(buildContext({
       form: {
-        addField: addField
+        getTabs: jest.fn().mockReturnValue([constants.SYSTEM_INFORMATION_TAB_ID]),
+        addField
       },
       newRecord: {
-        getValue: getValue
+        getValue
       }
     }));
 
@@ -58,74 +70,89 @@ describe('editExternalId user event script', () => {
 
   test('beforeLoad falls back to default container when System Information tab is unavailable', () => {
     const createdField = {};
-    const addField = jest
-      .fn()
-      .mockImplementationOnce(() => {
-        throw new Error('Tab not available');
-      })
-      .mockReturnValueOnce(createdField);
+    const addField = jest.fn().mockReturnValue(createdField);
     const handlers = loadHandlers();
 
     handlers.beforeLoad(buildContext({
       form: {
-        addField: addField
+        getTabs: jest.fn().mockReturnValue([]),
+        addField
       },
       newRecord: {
         getValue: jest.fn().mockReturnValue('EXT-1')
       }
     }));
 
-    expect(addField).toHaveBeenNthCalledWith(1, {
+    expect(addField).toHaveBeenCalledWith({
       id: constants.PAGE_EXTERNAL_ID_FIELD_ID,
       type: 'TEXT',
       label: 'External ID',
-      container: constants.SYSTEM_INFORMATION_TAB_ID
-    });
-    expect(addField).toHaveBeenNthCalledWith(2, {
-      id: constants.PAGE_EXTERNAL_ID_FIELD_ID,
-      type: 'TEXT',
-      label: 'External ID'
+      container: constants.MAIN_TAB_ID
     });
     expect(createdField.defaultValue).toBe('EXT-1');
   });
 
-  test('beforeSubmit persists edited value to native externalid field', () => {
-    const setValue = jest.fn();
+  test('afterSubmit persists edited value to native externalid field', () => {
     const getValue = jest.fn().mockImplementation(({fieldId}) => {
       if (fieldId === constants.PAGE_EXTERNAL_ID_FIELD_ID) {
         return 'UPDATED-EXT-ID';
       }
-      return null;
+      if (fieldId === constants.EXTERNAL_ID_FIELD_ID) {
+        return 'OLD-EXT-ID';
+      }
+      return undefined;
     });
     const handlers = loadHandlers();
 
-    handlers.beforeSubmit(buildContext({
+    handlers.afterSubmit(buildContext({
       type: 'edit',
       newRecord: {
-        getValue: getValue,
-        setValue: setValue
+        type: 'customer',
+        id: '123',
+        getValue
       }
     }));
 
-    expect(getValue).toHaveBeenCalledWith({fieldId: constants.PAGE_EXTERNAL_ID_FIELD_ID});
-    expect(setValue).toHaveBeenCalledWith({
-      fieldId: constants.EXTERNAL_ID_FIELD_ID,
-      value: 'UPDATED-EXT-ID'
+    expect(record.submitFields).toHaveBeenCalledWith({
+      type: 'customer',
+      id: '123',
+      values: {
+        externalid: 'UPDATED-EXT-ID'
+      }
     });
   });
 
-  test('beforeSubmit does nothing when custom field is missing in context', () => {
-    const setValue = jest.fn();
+  test('afterSubmit does nothing when custom field is missing in context', () => {
     const handlers = loadHandlers();
 
-    handlers.beforeSubmit(buildContext({
-      type: 'xedit',
+    handlers.afterSubmit(buildContext({
+      type: 'edit',
       newRecord: {
-        getValue: jest.fn().mockReturnValue(undefined),
-        setValue: setValue
+        type: 'customer',
+        id: '123',
+        getValue: jest.fn().mockReturnValue(undefined)
       }
     }));
 
-    expect(setValue).not.toHaveBeenCalled();
+    expect(record.submitFields).not.toHaveBeenCalled();
+  });
+
+  test('afterSubmit does nothing when new value equals old value', () => {
+    const handlers = loadHandlers();
+
+    handlers.afterSubmit(buildContext({
+      type: 'edit',
+      newRecord: {
+        type: 'customer',
+        id: '123',
+        getValue: jest.fn().mockImplementation(({fieldId}) => {
+          if (fieldId === constants.PAGE_EXTERNAL_ID_FIELD_ID) return 'UNCHANGED';
+          if (fieldId === constants.EXTERNAL_ID_FIELD_ID) return 'UNCHANGED';
+          return undefined;
+        })
+      }
+    }));
+
+    expect(record.submitFields).not.toHaveBeenCalled();
   });
 });
