@@ -52,10 +52,15 @@ define(['N/record'], function (record) {
 ## Implementation Notes
 - Keep NetSuite runtime entry points simple and explicit.
 - Keep business logic testable via small pure helper functions.
-- Keep entry points thin: delegate to helper functions and wrap delegated calls
-  in `try/catch` so failures do not disrupt record load/save flow.
+- Keep entry points thin: delegate to helper functions.
+- Do not add blanket defensive scaffolding for simple utilities with stable,
+  well-defined contracts.
+- Use `try/catch` only when a specific call can realistically throw and the
+  script has a clear recovery/logging path.
 - Scope behavior by `context.type` and check required runtime objects (`form`, `newRecord`) before use.
 - Keep field IDs/constants centralized at top of file.
+- Prefer direct SuiteScript field type literals (for example `'text'`) when
+  creating fields, instead of adding module imports only to reference enums.
 
 ## Proven Patterns From Working External ID UE
 - For form placement, do not assume a single System Information tab id.

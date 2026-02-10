@@ -18,6 +18,10 @@ Implement the approved plan with code changes only.
   - Style: StandardJS
   - Paths: `src/FileCabinet/SuiteScripts/topazHarbor/[utilityName]/[fileName].js`
 - Follow UE script coding standards in `AI/Guidelines/SuiteScript User Event Scripts.md`.
+- For simple utilities with well-defined contracts, avoid over-defensive
+  scaffolding and broad `try/catch` usage.
+- Prefer direct SuiteScript field type literals (for example `'text'`) when
+  creating form fields unless enum imports are needed for other calls.
 - Create/update SDF object XML files under `src/Objects/`.
 - For script deployments, use `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>` inside `customscript_*.xml`.
 - If requirement says "ALL RECORDS" for UE/Client deployment, set `<recordtype>RECORD</recordtype>`.

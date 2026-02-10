@@ -22,6 +22,11 @@ Implement approved plan changes only.
   - `src/Objects/` for object XML
 - Follow UE script coding standards in:
   - `AI/Guidelines/SuiteScript User Event Scripts.md`
+- For simple utilities with stable contracts:
+  - avoid over-defensive scaffolding and unnecessary safety wrappers
+  - only use `try/catch` where a real throwable call needs explicit handling
+- Prefer direct field type literals (for example `'text'`) when creating
+  NetSuite form fields unless enum imports are required for another reason.
 - Script deployments must be inside `customscript_*.xml` under:
   - `<scriptdeployments><scriptdeployment>...</scriptdeployment></scriptdeployments>`
 - If requirement says "ALL RECORDS" for UE/Client deployment, use:

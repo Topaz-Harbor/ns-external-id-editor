@@ -74,8 +74,11 @@ Keep framework entry-point functions (for example `beforeLoad`, `beforeSubmit`,
 
 Rules:
 - Entry points should delegate business logic to helper functions.
+- In simple utilities with well-defined contracts, avoid defensive wrappers,
+  layered guards, and generic safety code.
 - Use `try/catch` only around operations that can realistically throw in
-  runtime (for example NetSuite API calls, record/form mutations, external I/O).
+  runtime and only when there is a clear handling path (for example
+  `log.error(...)` plus safe continuation).
 - Do not wrap pure predicate/helper calls in `try/catch` when they only evaluate
   local values and return booleans.
 - Every `catch` block must log the error with `log.error(...)` at minimum.
@@ -84,3 +87,7 @@ Rules:
   `addExternalIdFieldToForm`, `copySubmittedExternalIdToRecord`) instead of
   generic names like `handleBeforeLoad`.
 - Entry points may call multiple helpers; keep each call focused on one job.
+
+## SuiteScript Field Types
+When creating SuiteScript UI fields, prefer direct field type literals
+(for example `'text'`) over importing modules (i.e. `N/ui/serverWidget`) solely for enum constants.

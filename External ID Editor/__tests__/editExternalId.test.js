@@ -1,9 +1,3 @@
-const serverWidget = {
-  FieldType: {
-    TEXT: 'TEXT'
-  }
-};
-
 jest.mock('N/record', () => ({
   submitFields: jest.fn()
 }));
@@ -11,7 +5,6 @@ const record = require('N/record');
 
 const constants = {
   EXTERNAL_ID_FIELD_ID: 'externalid',
-  PAGE_EXTERNAL_ID_FIELD_ID: 'custpage_th_external_id_editor',
   SYSTEM_INFORMATION_TAB_ID: 'systeminfo',
   SECONDARY_SYSTEM_INFORMATION_TAB_ID: 's_sysinfo',
   MAIN_TAB_ID: 'main'
@@ -40,6 +33,7 @@ function buildContext(overrides) {
 describe('editExternalId user event script', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    global.log = { debug: jest.fn(), error: jest.fn() };
   });
 
   test('beforeLoad adds field on System Information tab when available', () => {
@@ -58,10 +52,10 @@ describe('editExternalId user event script', () => {
       }
     }));
 
-    expect(getValue).toHaveBeenCalledWith({fieldId: constants.EXTERNAL_ID_FIELD_ID});
+    expect(getValue).toHaveBeenCalledWith(constants.EXTERNAL_ID_FIELD_ID);
     expect(addField).toHaveBeenCalledWith({
-      id: constants.PAGE_EXTERNAL_ID_FIELD_ID,
-      type: 'TEXT',
+      id: 'custpage_externalid',
+      type: 'text',
       label: 'External ID',
       container: constants.SYSTEM_INFORMATION_TAB_ID
     });
@@ -84,8 +78,8 @@ describe('editExternalId user event script', () => {
     }));
 
     expect(addField).toHaveBeenCalledWith({
-      id: constants.PAGE_EXTERNAL_ID_FIELD_ID,
-      type: 'TEXT',
+      id: 'custpage_externalid',
+      type: 'text',
       label: 'External ID',
       container: constants.MAIN_TAB_ID
     });
@@ -108,8 +102,8 @@ describe('editExternalId user event script', () => {
     }));
 
     expect(addField).toHaveBeenCalledWith({
-      id: constants.PAGE_EXTERNAL_ID_FIELD_ID,
-      type: 'TEXT',
+      id: 'custpage_externalid',
+      type: 'text',
       label: 'External ID',
       container: constants.SECONDARY_SYSTEM_INFORMATION_TAB_ID
     });
@@ -117,8 +111,8 @@ describe('editExternalId user event script', () => {
   });
 
   test('afterSubmit persists edited value to native externalid field', () => {
-    const getValue = jest.fn().mockImplementation(({fieldId}) => {
-      if (fieldId === constants.PAGE_EXTERNAL_ID_FIELD_ID) {
+    const getValue = jest.fn().mockImplementation((fieldId) => {
+      if (fieldId === 'custpage_externalid') {
         return 'UPDATED-EXT-ID';
       }
       if (fieldId === constants.EXTERNAL_ID_FIELD_ID) {
@@ -146,7 +140,7 @@ describe('editExternalId user event script', () => {
     });
   });
 
-  test('afterSubmit does nothing when custom field is missing in context', () => {
+  test('afterSubmit submits undefined externalid when custom field is missing in context', () => {
     const handlers = loadHandlers();
 
     handlers.afterSubmit(buildContext({
@@ -154,11 +148,20 @@ describe('editExternalId user event script', () => {
       newRecord: {
         type: 'customer',
         id: '123',
-        getValue: jest.fn().mockReturnValue(undefined)
+        getValue: jest.fn().mockImplementation((fieldId) => {
+          if (fieldId === 'custpage_externalid') return undefined;
+          return 'OLD';
+        })
       }
     }));
 
-    expect(record.submitFields).not.toHaveBeenCalled();
+    expect(record.submitFields).toHaveBeenCalledWith({
+      type: 'customer',
+      id: '123',
+      values: {
+        externalid: undefined
+      }
+    });
   });
 
   test('afterSubmit clears externalid when custom field is blank', () => {
@@ -169,8 +172,8 @@ describe('editExternalId user event script', () => {
       newRecord: {
         type: 'customer',
         id: '123',
-        getValue: jest.fn().mockImplementation(({fieldId}) => {
-          if (fieldId === constants.PAGE_EXTERNAL_ID_FIELD_ID) return '';
+        getValue: jest.fn().mockImplementation((fieldId) => {
+          if (fieldId === 'custpage_externalid') return '';
           if (fieldId === constants.EXTERNAL_ID_FIELD_ID) return 'HAS-VALUE';
           return undefined;
         })
@@ -194,8 +197,8 @@ describe('editExternalId user event script', () => {
       newRecord: {
         type: 'customer',
         id: '123',
-        getValue: jest.fn().mockImplementation(({fieldId}) => {
-          if (fieldId === constants.PAGE_EXTERNAL_ID_FIELD_ID) return 'UNCHANGED';
+        getValue: jest.fn().mockImplementation((fieldId) => {
+          if (fieldId === 'custpage_externalid') return 'UNCHANGED';
           if (fieldId === constants.EXTERNAL_ID_FIELD_ID) return 'UNCHANGED';
           return undefined;
         })
