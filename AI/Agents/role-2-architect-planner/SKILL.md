@@ -19,4 +19,5 @@ Produce an implementation plan before any code changes.
 - Follow:
   - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SDF Projects.md`
   - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SDF Script Objects.md`
+  - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`
 - Plan against project root `repo_folder/Project Name` (folder with `suitecloud.config.js`), not git repo root.

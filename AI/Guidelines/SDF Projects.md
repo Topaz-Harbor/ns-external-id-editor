@@ -22,6 +22,8 @@ Use the SuiteCloud CLI scaffold as the source of truth for required files.
   - `src/FileCabinet/SuiteScripts/topazHarbor/<utilityName>/<fileName>.js`
 - Follow camelCase for subfolders under `SuiteScripts`.
 - Do not include script type abbreviations in file names (no `ue`, `cs`, `sut` suffixes).
+- Follow script implementation standards in:
+  - `/Users/slemp/local/th/ns-external-id/AI/Guidelines/SuiteScript User Event Scripts.md`
 
 ## Object Location Convention
 - Put SDF object XML under:

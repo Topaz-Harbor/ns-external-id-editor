@@ -1,6 +1,8 @@
 /**
  * @NApiVersion 2.1
  * @NScriptType UserEventScript
+ * @author Stephen Lemp <stephen@topazharbor.com>
+ * @description Exposes an editable External ID field on supported record forms and persists changes on save.
  */
 
 const EXTERNAL_ID_FIELD_ID = 'externalid';
