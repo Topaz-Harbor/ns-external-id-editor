@@ -5,40 +5,38 @@
  * @description Exposes an editable External ID field on supported record forms and persists changes on save.
  */
 
-const EXTERNAL_ID_FIELD_ID = 'externalid';
-const PAGE_EXTERNAL_ID_FIELD_ID = 'custpage_th_external_id_editor';
-const SYSTEM_INFORMATION_TAB_ID = 'systeminformation';
+define(['N/ui/serverWidget'], function (serverWidget) {
+  const EXTERNAL_ID_FIELD_ID = 'externalid';
+  const PAGE_EXTERNAL_ID_FIELD_ID = 'custpage_th_external_id_editor';
+  const SYSTEM_INFORMATION_TAB_ID = 'systeminformation';
 
-function createHandlers(serverWidget) {
   function beforeLoad(context) {
-    const userEventType = context.UserEventType || {};
+    const { UserEventType = {}, form, newRecord, type } = context;
+    // Limit beforeLoad behavior to supported contexts; filter(Boolean) drops
+    // undefined enum values in partial/mock runtimes.
     const supportedTypes = [
-      userEventType.CREATE,
-      userEventType.COPY,
-      userEventType.EDIT,
-      userEventType.VIEW
+      UserEventType.CREATE,
+      UserEventType.COPY,
+      UserEventType.EDIT,
+      UserEventType.VIEW
     ].filter(Boolean);
 
-    if (supportedTypes.length && supportedTypes.indexOf(context.type) === -1) {
-      return;
-    }
+    if (supportedTypes.length && supportedTypes.indexOf(type) === -1) return;
 
-    if (!context.form || !context.newRecord) {
-      return;
-    }
+    if (!form || !newRecord) return;
 
-    const currentValue = context.newRecord.getValue({fieldId: EXTERNAL_ID_FIELD_ID});
+    const currentValue = newRecord.getValue({ fieldId: EXTERNAL_ID_FIELD_ID });
     let externalIdField;
 
     try {
-      externalIdField = context.form.addField({
+      externalIdField = form.addField({
         id: PAGE_EXTERNAL_ID_FIELD_ID,
         type: serverWidget.FieldType.TEXT,
         label: 'External ID',
         container: SYSTEM_INFORMATION_TAB_ID
       });
     } catch (e) {
-      externalIdField = context.form.addField({
+      externalIdField = form.addField({
         id: PAGE_EXTERNAL_ID_FIELD_ID,
         type: serverWidget.FieldType.TEXT,
         label: 'External ID'
@@ -51,52 +49,26 @@ function createHandlers(serverWidget) {
   }
 
   function beforeSubmit(context) {
-    const userEventType = context.UserEventType || {};
+    const { UserEventType = {}, newRecord, type } = context;
     const supportedTypes = [
-      userEventType.CREATE,
-      userEventType.COPY,
-      userEventType.EDIT,
-      userEventType.XEDIT
+      UserEventType.CREATE,
+      UserEventType.COPY,
+      UserEventType.EDIT,
+      UserEventType.XEDIT
     ].filter(Boolean);
 
-    if (supportedTypes.length && supportedTypes.indexOf(context.type) === -1) {
-      return;
-    }
+    if (supportedTypes.length && supportedTypes.indexOf(type) === -1) return;
 
-    if (!context.newRecord) {
-      return;
-    }
+    if (!newRecord) return;
 
-    const submittedValue = context.newRecord.getValue({fieldId: PAGE_EXTERNAL_ID_FIELD_ID});
-    if (submittedValue === null || submittedValue === undefined) {
-      return;
-    }
+    const submittedValue = newRecord.getValue({ fieldId: PAGE_EXTERNAL_ID_FIELD_ID });
+    if (submittedValue === null || submittedValue === undefined) return;
 
-    context.newRecord.setValue({
+    newRecord.setValue({
       fieldId: EXTERNAL_ID_FIELD_ID,
       value: String(submittedValue)
     });
   }
 
-  return {
-    beforeLoad: beforeLoad,
-    beforeSubmit: beforeSubmit
-  };
-}
-
-if (typeof define === 'function') {
-  define(['N/ui/serverWidget'], function (serverWidget) {
-    return createHandlers(serverWidget);
-  });
-}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    createHandlers: createHandlers,
-    constants: {
-      EXTERNAL_ID_FIELD_ID: EXTERNAL_ID_FIELD_ID,
-      PAGE_EXTERNAL_ID_FIELD_ID: PAGE_EXTERNAL_ID_FIELD_ID,
-      SYSTEM_INFORMATION_TAB_ID: SYSTEM_INFORMATION_TAB_ID
-    }
-  };
-}
+  return { beforeLoad, beforeSubmit };
+});
