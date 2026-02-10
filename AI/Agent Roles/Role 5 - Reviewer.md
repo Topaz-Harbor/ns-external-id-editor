@@ -19,7 +19,9 @@ Perform a PR-style review focused on quality and risk.
 - Residual risks and missing test coverage
 - NetSuite admin's best friend:
   - All objects have a description and help text
-  - Custom fields have help text added
+  - Any SuiteScript UI field added via `form.addField(...)` has
+    `setHelpText(...)`
+  - Script-added field help text explicitly says the field was added by script
 
 ## Guardrails
 - Prioritize actionable findings over summary text.

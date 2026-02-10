@@ -37,7 +37,7 @@ describe('editExternalId user event script', () => {
   });
 
   test('beforeLoad adds field on System Information tab when available', () => {
-    const createdField = {};
+    const createdField = { setHelpText: jest.fn() };
     const addField = jest.fn().mockReturnValue(createdField);
     const getValue = jest.fn().mockReturnValue('ABC-100');
     const handlers = loadHandlers();
@@ -59,11 +59,14 @@ describe('editExternalId user event script', () => {
       label: 'External ID',
       container: constants.SYSTEM_INFORMATION_TAB_ID
     });
+    expect(createdField.setHelpText).toHaveBeenCalledWith({
+      help: 'Added by script: enter the External ID to save on this record.'
+    });
     expect(createdField.defaultValue).toBe('ABC-100');
   });
 
   test('beforeLoad falls back to default container when System Information tab is unavailable', () => {
-    const createdField = {};
+    const createdField = { setHelpText: jest.fn() };
     const addField = jest.fn().mockReturnValue(createdField);
     const handlers = loadHandlers();
 
@@ -83,11 +86,14 @@ describe('editExternalId user event script', () => {
       label: 'External ID',
       container: constants.MAIN_TAB_ID
     });
+    expect(createdField.setHelpText).toHaveBeenCalledWith({
+      help: 'Added by script: enter the External ID to save on this record.'
+    });
     expect(createdField.defaultValue).toBe('EXT-1');
   });
 
   test('beforeLoad uses secondary system info tab when primary is unavailable', () => {
-    const createdField = {};
+    const createdField = { setHelpText: jest.fn() };
     const addField = jest.fn().mockReturnValue(createdField);
     const handlers = loadHandlers();
 
@@ -106,6 +112,9 @@ describe('editExternalId user event script', () => {
       type: 'text',
       label: 'External ID',
       container: constants.SECONDARY_SYSTEM_INFORMATION_TAB_ID
+    });
+    expect(createdField.setHelpText).toHaveBeenCalledWith({
+      help: 'Added by script: enter the External ID to save on this record.'
     });
     expect(createdField.defaultValue).toBe('EXT-2');
   });

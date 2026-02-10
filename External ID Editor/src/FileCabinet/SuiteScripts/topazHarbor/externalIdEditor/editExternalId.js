@@ -3,6 +3,7 @@
  * @NApiVersion 2.1
  * @NScriptType UserEventScript
  * @author Stephen Lemp <stephen@topazharbor.com>
+ * @description Adds an editable External ID field on supported forms and persists changes after save.
  */
 define(['N/record'], function (record) {
 
@@ -19,6 +20,7 @@ define(['N/record'], function (record) {
             visibleTabs.includes('s_sysinfo') ? 's_sysinfo' :
               'main'
       });
+      fieldId.setHelpText({ help: 'Added by script: enter the External ID to save on this record.' });
       fieldId.defaultValue = newRecord.getValue('externalid');
     }
   }

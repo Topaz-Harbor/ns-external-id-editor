@@ -25,6 +25,9 @@
 - Confirm script deployment is active and released.
 - Confirm the user has permission to edit the target record.
 - Check whether the form shows a System Information tab; if not, the field is rendered without that container.
+- Current script behavior: `beforeLoad` supports `CREATE`, `EDIT`, and `VIEW` only (not `COPY`).
+  - On `COPY`, the editable External ID field is not added by this script.
+  - If copy behavior is needed, extend `beforeLoad` to include `UserEventType.COPY`.
 
 ### Value does not persist after save
 - Confirm deployment is active and status is `Released`.

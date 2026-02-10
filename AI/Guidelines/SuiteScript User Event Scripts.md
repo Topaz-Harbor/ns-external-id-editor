@@ -61,6 +61,9 @@ define(['N/record'], function (record) {
 - Keep field IDs/constants centralized at top of file.
 - Prefer direct SuiteScript field type literals (for example `'text'`) when
   creating fields, instead of adding module imports only to reference enums.
+- Any field added with `form.addField(...)` must include user-facing help text
+  via `field.setHelpText(...)`.
+  - Help text should explicitly state that the field is added by script.
 
 ## Proven Patterns From Working External ID UE
 - For form placement, do not assume a single System Information tab id.
