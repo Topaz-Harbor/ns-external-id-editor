@@ -4,7 +4,7 @@
 Create safe, professional commits after explicit user approval.
 
 ## Skill
-- Use `AI/Agents/git-commit-pro/SKILL.md`.
+- Use `AI/Agents/role-7-git-committer/SKILL.md`.
 
 ## Guardrails
 - Never commit before explicit approval.

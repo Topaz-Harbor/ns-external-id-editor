@@ -1,6 +1,6 @@
 # Commit Message Research Notes
 
-This note summarizes primary-source guidance used by the `git-commit-pro` skill.
+This note summarizes primary-source guidance used by the `role-7-git-committer` skill.
 
 ## 1) Git commit object structure
 - Git stores commit message as a free-form log message attached to the commit object.
