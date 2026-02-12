@@ -11,7 +11,6 @@
     <scriptdeployment scriptid="customdeploy_th_ext_id_editor_all">
       <allemployees>F</allemployees>
       <alllocalizationcontexts>T</alllocalizationcontexts>
-      <allpartners>F</allpartners>
       <allroles>T</allroles>
       <audslctrole></audslctrole>
       <eventtype></eventtype>
@@ -21,7 +20,6 @@
       <recordtype>RECORD</recordtype>
       <runasrole></runasrole>
       <status>TESTING</status>
-      <title>TH External ID Editor All Records</title>
     </scriptdeployment>
   </scriptdeployments>
 </usereventscript>
