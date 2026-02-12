@@ -3,9 +3,13 @@
 ## Choose an Install Path
 
 - Admin manual install (no SDF):
-  - `docs/install-admin-manual.md`
+  - [docs/install-admin-manual.md](https://github.com/Topaz-Harbor/ns-external-id-editor/blob/main/docs/install-admin-manual.md)
 - Developer SDF install:
-  - `docs/install-developer-sdf.md`
+  - [docs/install-developer-sdf.md](https://github.com/Topaz-Harbor/ns-external-id-editor/blob/main/docs/install-developer-sdf.md)
+
+## Direct Script Download (Admin Manual Path)
+
+- [th_external_id_editor_ue.js](https://raw.githubusercontent.com/Topaz-Harbor/ns-external-id-editor/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
 
 Use this guide for post-install configuration and troubleshooting.
 

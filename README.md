@@ -1,6 +1,6 @@
 # External ID Editor (Free Utility)
 
-External ID Editor is a free Topaz Harbor utility for NetSuite that exposes the `externalid` value on record forms so admin teams can view and update it more safely and quickly.
+External ID Editor is a free Topaz Harbor utility for NetSuite that exposes the `externalid` value on record forms so admin teams can view and update it safely and quickly.
 
 ## Utility Family
 
@@ -8,8 +8,7 @@ This utility is part of the **Topaz Harbor Admin Utilities** lineup.
 
 ## Who This Is For
 
-- NetSuite admins who need a practical utility and do not use SDF.
-- NetSuite developers who want fast project-based deployment with SuiteCloud CLI.
+- NetSuite admins who need a practical utility for managing External ID quickly
 
 ## Installation Paths
 
@@ -35,5 +34,5 @@ Use the guide that matches your workflow:
 
 ## Notes
 
-- The utility currently deploys to all record types (`recordtype=RECORD`) and runs in UI context.
+- When deployed via SDF, the utility currently deploys to all record types (`recordtype=RECORD`) and runs in UI context only.
 - Review deployment status and role permissions before enabling in production.

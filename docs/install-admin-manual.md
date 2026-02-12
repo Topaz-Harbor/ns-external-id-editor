@@ -9,7 +9,9 @@ Use this path if you are a NetSuite admin and want to install the utility direct
   - Script records
   - Script deployments
 - Script file from this repo:
-  - `External ID Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js`
+  - [External ID Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js](https://github.com/Topaz-Harbor/ns-external-id-editor/blob/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
+- Direct download:
+  - [Download th_external_id_editor_ue.js](https://raw.githubusercontent.com/Topaz-Harbor/ns-external-id-editor/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
 
 ## Steps
 
