@@ -9,7 +9,8 @@
 
 ## Direct Script Download (Admin Manual Path)
 
-- [th_external_id_editor_ue.js](https://raw.githubusercontent.com/Topaz-Harbor/ns-external-id-editor/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
+- [th_external_id_editor_ue.js](https://github.com/Topaz-Harbor/ns-external-id-editor/raw/refs/heads/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
+- Note: while the repo is private, this link requires GitHub access to the repository.
 
 Use this guide for post-install configuration and troubleshooting.
 

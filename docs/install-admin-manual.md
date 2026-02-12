@@ -10,8 +10,8 @@ Use this path if you are a NetSuite admin and want to install the utility direct
   - Script deployments
 - Script file from this repo:
   - [External ID Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js](https://github.com/Topaz-Harbor/ns-external-id-editor/blob/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
-- Direct download:
-  - [Download th_external_id_editor_ue.js](https://raw.githubusercontent.com/Topaz-Harbor/ns-external-id-editor/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
+- Direct download (requires repo access while private):
+  - [Download th_external_id_editor_ue.js](https://github.com/Topaz-Harbor/ns-external-id-editor/raw/refs/heads/main/External%20ID%20Editor/src/FileCabinet/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js)
 
 ## Steps
 
@@ -24,8 +24,11 @@ Use this path if you are a NetSuite admin and want to install the utility direct
 2. Create User Event script record.
 - NetSuite path:
   - `Customization > Scripting > Scripts > New`
-- Script type:
-  - `User Event Script`
+- Select the uploaded file:
+  - `th_external_id_editor_ue.js`
+- Script type behavior:
+  - SuiteScript 2.x: NetSuite infers script type from file annotations (no manual script-type selection step).
+  - SuiteScript 1.0: script type selection is required.
 - Name:
   - `TH External ID Editor`
 - Script ID:
