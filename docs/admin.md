@@ -1,16 +1,16 @@
 # External ID Editor Admin Guide
 
-## Install
-1. Open a terminal in `External ID Editor`.
-2. Confirm account authentication is configured for SuiteCloud CLI.
-3. Run:
-   ```bash
-   suitecloud project:deploy
-   ```
-4. Verify the following objects are deployed:
-   - `customscript_th_ext_id_editor`
+## Choose an Install Path
+
+- Admin manual install (no SDF):
+  - `docs/install-admin-manual.md`
+- Developer SDF install:
+  - `docs/install-developer-sdf.md`
+
+Use this guide for post-install configuration and troubleshooting.
 
 ## Configure
+
 1. In NetSuite, open **Customization > Scripting > Scripts**.
 2. Open `TH External ID Editor`.
 3. Review deployment `customdeploy_th_ext_id_editor_all`:
@@ -21,6 +21,7 @@
 4. If scope should be narrower than all records, update deployment `recordtype` and redeploy.
 
 ## Troubleshoot
+
 ### Field is not visible
 - Confirm script deployment is active and released.
 - Confirm the user has permission to edit the target record.
@@ -36,8 +37,7 @@
 - Review script execution logs for deployment `customdeploy_th_ext_id_editor_all`.
 
 ### Deploy command fails
-- Run `npm run lint` to validate SDF object structure first.
-- Run `npm test` and fix failing tests first.
+- Run `suitecloud project:validate` first.
 - Validate SuiteCloud account authentication and target environment.
 - Re-run deployment with explicit account if needed:
   ```bash
