@@ -1,6 +1,12 @@
 /**
+ * External ID Editor User Event Script
+ * Adds an editable External ID field to supported record forms and
+ * persists changes after submit.
+ *
  * @NApiVersion 2.1
  * @NScriptType UserEventScript
+ * @author Stephen Lemp <stephen@topazharbor.com>
+ * @license MIT
  */
 define(['N/record'], (record) => {
   const FIELD_ID = 'custpage_externalid';

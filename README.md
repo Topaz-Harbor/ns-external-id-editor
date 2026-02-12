@@ -36,3 +36,7 @@ Use the guide that matches your workflow:
 
 - When deployed via SDF, the utility currently deploys to all record types (`recordtype=RECORD`) and runs in UI context only.
 - Review deployment status and role permissions before enabling in production.
+
+## License
+
+This project is licensed under the MIT License.
