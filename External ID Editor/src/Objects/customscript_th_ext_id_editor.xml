@@ -1,0 +1,27 @@
+<usereventscript scriptid="customscript_th_ext_id_editor">
+  <description>Expose and edit NetSuite External ID on record forms.</description>
+  <isinactive>F</isinactive>
+  <name>TH External ID Editor</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>F</notifyowner>
+  <notifyuser>F</notifyuser>
+  <scriptfile>[/SuiteScripts/topazHarbor/externalIdEditor/th_external_id_editor_ue.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_th_ext_id_editor_all">
+      <allemployees>F</allemployees>
+      <alllocalizationcontexts>T</alllocalizationcontexts>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <eventtype></eventtype>
+      <executioncontext>USERINTERFACE</executioncontext>
+      <isdeployed>F</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <recordtype>RECORD</recordtype>
+      <runasrole></runasrole>
+      <status>TESTING</status>
+      <title>TH External ID Editor All Records</title>
+    </scriptdeployment>
+  </scriptdeployments>
+</usereventscript>
