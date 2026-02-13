@@ -50,11 +50,17 @@ suitecloud project:deploy
 
 ## Troubleshooting
 
-- If validation or deploy fails, run:
+- If validation or deploy fails, run validation again and write a log file:
 
 ```bash
-suitecloud project:validate --debug
+suitecloud project:validate --log ./validation.log
 ```
 
 - Confirm auth ID and target account settings.
+- Optionally run server-side validation for account-level context:
+
+```bash
+suitecloud project:validate --server --log ./validation.log
+```
+
 - Resolve XML/schema warnings before production rollout when feasible.
