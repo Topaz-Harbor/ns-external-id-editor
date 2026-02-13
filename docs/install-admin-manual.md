@@ -31,7 +31,6 @@ Use this path if you are a NetSuite admin and want to install the utility direct
 - Script ID:
   - `_th_ext_id_editor`
   - NetSuite automatically prepends `customscript` (no trailing underscore).
-  - The underscore comes from the value you enter (`_th_ext_id_editor`).
   - Final Script ID becomes `customscript_th_ext_id_editor`.
 - Script file:
   - uploaded `th_external_id_editor_ue.js`
@@ -40,7 +39,6 @@ Use this path if you are a NetSuite admin and want to install the utility direct
 - Deployment script ID:
   - `_th_ext_id_editor_all`
   - NetSuite automatically prepends `customdeploy` (no trailing underscore).
-  - The underscore comes from the value you enter (`_th_ext_id_editor_all`).
   - Final Deployment ID becomes `customdeploy_th_ext_id_editor_all`.
 - Status:
   - `Released` (for live use) or `Testing` (for controlled rollout)
