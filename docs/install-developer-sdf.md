@@ -62,5 +62,3 @@ suitecloud project:validate --log ./validation.log
 ```bash
 suitecloud project:validate --server --log ./validation.log
 ```
-
-- Resolve XML/schema warnings before production rollout when feasible.

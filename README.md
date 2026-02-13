@@ -8,7 +8,8 @@ This utility is part of the **Topaz Harbor Admin Utilities** lineup.
 
 ## Who This Is For
 
-- NetSuite admins who need a practical utility for managing External ID quickly
+- NetSuite admins who need a practical utility for managing External ID quickly.
+- NetSuite developers who prefer SDF/CLI-based deployment workflows.
 
 ## Installation Paths
 
