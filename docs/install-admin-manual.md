@@ -26,19 +26,22 @@ Use this path if you are a NetSuite admin and want to install the utility direct
   - `Customization > Scripting > Scripts > New`
 - Select the uploaded file:
   - `th_external_id_editor_ue.js`
-- NetSuite automatically detects the script type from the selected file.
 - Name:
   - `TH External ID Editor`
 - Script ID:
-  - `customscript_th_ext_id_editor`
+  - `_th_ext_id_editor`
+  - NetSuite automatically prepends `customscript` (no trailing underscore).
+  - The underscore comes from the value you enter (`_th_ext_id_editor`).
+  - Final Script ID becomes `customscript_th_ext_id_editor`.
 - Script file:
   - uploaded `th_external_id_editor_ue.js`
 
-3. Create script deployment.
-- Deployment title:
-  - `TH External ID Editor All Records`
+1. Create script deployment.
 - Deployment script ID:
-  - `customdeploy_th_ext_id_editor_all`
+  - `_th_ext_id_editor_all`
+  - NetSuite automatically prepends `customdeploy` (no trailing underscore).
+  - The underscore comes from the value you enter (`_th_ext_id_editor_all`).
+  - Final Deployment ID becomes `customdeploy_th_ext_id_editor_all`.
 - Status:
   - `Released` (for live use) or `Testing` (for controlled rollout)
 - Deployed:
@@ -48,7 +51,7 @@ Use this path if you are a NetSuite admin and want to install the utility direct
 - Execution context:
   - `User Interface`
 
-4. Validate in UI.
+1. Validate in UI.
 - Open a record in `VIEW` and `EDIT`.
 - Confirm `External ID` field appears.
 - Edit and save.
