@@ -18,26 +18,44 @@ This is the SDF project root (contains `suitecloud.config.js` and `src/`).
 
 ## Steps
 
-1. Validate project structure.
+1. Clone the repository.
+
+```bash
+git clone https://github.com/Topaz-Harbor/ns-external-id-editor.git
+```
+
+2. Move into the repository root.
+
+```bash
+cd ns-external-id-editor
+```
+
+3. Move into the SDF project root.
+
+```bash
+cd "External ID Editor"
+```
+
+4. Validate project structure.
 
 ```bash
 suitecloud project:validate
 ```
 
-2. Deploy project.
+5. Deploy project.
 
 ```bash
 suitecloud project:deploy
 ```
 
-3. Confirm deployed objects.
+6. Confirm deployed objects.
 
 - Script record:
   - `customscript_th_ext_id_editor`
 - Deployment:
   - `customdeploy_th_ext_id_editor_all`
 
-4. Set deployment status based on rollout stage.
+7. Set deployment status based on rollout stage.
 
 - `Testing` for limited validation
 - `Released` for production usage
